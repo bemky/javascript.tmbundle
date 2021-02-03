@@ -711,7 +711,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\?</string>
+			<string>\s\?</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>0</key>
@@ -785,6 +785,14 @@
 			<string>=&gt;</string>
 			<key>name</key>
 			<string>storage.type.arrow.js</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>For Optional Chaining</string>
+			<key>match</key>
+			<string>(?&lt;=\S)(\?)(?=\.)</string>
+			<key>name</key>
+			<string>keyword.operator.js</string>
 		</dict>
 		<dict>
 			<key>match</key>
