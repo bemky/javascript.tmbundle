@@ -44,7 +44,65 @@
 				</dict>
 				<dict>
 					<key>begin</key>
+					<string>(^\s*)(?=\[\[//(?![^\]]*\]\]))</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.whitespace.comment.leading.ejs</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?!\G)(\s*$\n)?</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.whitespace.comment.trailing.ejs</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
 					<string>(^\s*)(?=&lt;%(?![^%]*%&gt;))</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.whitespace.embedded.leading.ejs</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?!\G)(\s*$\n)?</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.whitespace.embedded.trailing.ejs</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#tags</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(^\s*)(?=\[\[(?![^\]]*\]\]))</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
@@ -121,6 +179,30 @@
 					<key>name</key>
 					<string>comment.block.ejs</string>
 				</dict>
+				<dict>
+					<key>begin</key>
+					<string>&lt;%#</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.comment.begin.ejs</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>-?%&gt;</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.comment.end.ejs</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>comment.block.ejs</string>
+				</dict>
 			</array>
 		</dict>
 		<key>tags</key>
@@ -142,6 +224,58 @@
 					<string>source.js</string>
 					<key>end</key>
 					<string>\]\]</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.embedded.end.ejs</string>
+						</dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>source.js</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.embedded.block.ejs</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.comment.ejs</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>(#).*?(?=-?\]\])</string>
+							<key>name</key>
+							<string>comment.line.number-sign.ejs</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>&lt;%[-=]?(?![^%]*%&gt;)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.embedded.begin.ejs</string>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.js</string>
+					<key>end</key>
+					<string>-?%&gt;</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>0</key>
@@ -222,6 +356,58 @@
 							</dict>
 							<key>match</key>
 							<string>(\/\/).*?(?=-?\]\])</string>
+							<key>name</key>
+							<string>comment.line.slash-slash.ejs</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>&lt;%[-=]?</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.embedded.begin.ejs</string>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.js</string>
+					<key>end</key>
+					<string>-?%&gt;</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.embedded.end.ejs</string>
+						</dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>source.js</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.embedded.line.ejs</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.comment.ejs</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>(\/\/).*?(?=-?%&gt;)</string>
 							<key>name</key>
 							<string>comment.line.slash-slash.ejs</string>
 						</dict>
